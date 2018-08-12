@@ -1,0 +1,255 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Objects/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Objects/actors/obj_Blackhole.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/img_logo.png" type="Texture" id=3]
+[ext_resource path="res://Resources/ProggyClean.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Resources/Sounds/sfx_game_start.wav" type="AudioStream" id=5]
+[ext_resource path="res://Objects/Shaders.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/img_title.png" type="Texture" id=7]
+[ext_resource path="res://Objects/FadeEffect.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 32
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Gradient" id=4]
+
+offsets = PoolRealArray( 0, 0.455621 )
+colors = PoolColorArray( 1, 0.14902, 0.552941, 0, 1, 0.14902, 0.552941, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+
+flags = 4
+gradient = SubResource( 4 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 45.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 5 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color" ]
+
+[sub_resource type="DynamicFont" id=6]
+
+size = 24
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="MainMenu" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Actors" type="Node" parent="." index="0"]
+
+[node name="Blackhole" parent="Actors" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 320, 540 )
+
+[node name="Logo" type="Sprite" parent="." index="1"]
+
+modulate = Color( 0.621094, 0.621094, 0.621094, 1 )
+position = Vector2( 584.286, 495 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Highscore" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 20.0
+margin_right = 640.0
+margin_bottom = 46.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "HIGHSCORE: 0"
+align = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Prompt" type="Label" parent="." index="3"]
+
+modulate = Color( 1, 0.994873, 0.671875, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 390.0
+margin_right = 640.0
+margin_bottom = 430.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "PRESS X"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Author" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 28.0
+margin_right = 588.0
+margin_bottom = 47.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.421875, 0.421875, 0.421875, 0.536078 )
+text = "LDJAM42 - SHELLBOT"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="sfxStartGame" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "Pause" ]
+
+[node name="Shaders" parent="." index="6" instance=ExtResource( 6 )]
+
+[node name="CRTShader" parent="Shaders" index="0"]
+
+margin_left = -320.0
+margin_top = -280.0
+margin_right = 320.0
+margin_bottom = 280.0
+
+[node name="Title" type="Sprite" parent="." index="7"]
+
+position = Vector2( 320, 260 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Particles2D" type="Particles2D" parent="." index="8"]
+
+position = Vector2( 320, 260 )
+scale = Vector2( 3, 3 )
+emitting = true
+amount = 60
+lifetime = 5.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.5
+explosiveness = 0.0
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+
+[node name="Mute" type="Label" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 490.0
+margin_right = 640.0
+margin_bottom = 511.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "MUTE (M)"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Fade" parent="." index="10" instance=ExtResource( 8 )]
+
+visible = false
+margin_right = 640.0
+margin_bottom = 560.0
+autoplay = true
+
+[connection signal="finished" from="sfxStartGame" to="." method="_on_sfxStartGame_finished"]
+
+
+[editable path="Shaders"]

@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Objects/LogoScreen.gd" type="Script" id=1]
+[ext_resource path="res://Resources/tex.png" type="Texture" id=2]
+[ext_resource path="res://Resources/img_logo.png" type="Texture" id=3]
+[ext_resource path="res://Resources/ProggyClean.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Objects/FadeEffect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Sounds/sfx_neutralized.wav" type="AudioStream" id=6]
+[ext_resource path="res://Objects/Shaders.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="LogoScreen" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
+
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 640.0
+margin_bottom = 560.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 0
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Logo" type="Sprite" parent="." index="1"]
+
+position = Vector2( 320, 230 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="." index="2"]
+
+modulate = Color( 1, 0.537255, 0.168627, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 400.0
+margin_right = 434.0
+margin_bottom = 452.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "SHELLBOT"
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme", "Visibility" ]
+
+[node name="Label2" type="Label" parent="." index="3"]
+
+modulate = Color( 1, 0.537255, 0.168627, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 520.0
+margin_right = 640.0
+margin_bottom = 575.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "@_SHELLBOT_ // sshellbot.tumblr.com
+"
+align = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Fade" parent="." index="4" instance=ExtResource( 5 )]
+
+margin_right = 640.0
+margin_bottom = 560.0
+autoplay = true
+
+[node name="sfxNeutralized" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Shaders" parent="." index="6" instance=ExtResource( 7 )]
+
+[connection signal="complete" from="Fade" to="." method="_on_Fade_complete"]
+
+

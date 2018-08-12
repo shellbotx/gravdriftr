@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/ScrollingBackground.gd" type="Script" id=1]
+[ext_resource path="res://Resources/background.png" type="Texture" id=2]
+
+
+
+
+[node name="Scroll" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+texture = ExtResource( 2 )
+speed_x = 0
+speed_y = 1
+
+

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Sounds/foolboymedia__race-track.wav" type="AudioStream" id=1]
+[ext_resource path="res://Objects/Jukebox.gd" type="Script" id=2]
+
+
+[node name="Jukebox" type="AudioStreamPlayer"]
+
+stream = ExtResource( 1 )
+volume_db = -30.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+script = ExtResource( 2 )
+
+[connection signal="finished" from="." to="." method="_on_Jukebox_finished"]
+
+

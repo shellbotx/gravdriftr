@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Objects/actors/Blackhole.gd" type="Script" id=1]
+[ext_resource path="res://Resources/blackhole_over.png" type="Texture" id=2]
+[ext_resource path="res://Resources/blackhole_under.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Sounds/sfx_swallow.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 160, 1.85714 )
+
+[sub_resource type="Gradient" id=2]
+
+offsets = PoolRealArray( 0.408284, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=3]
+
+flags = 4
+gradient = SubResource( 2 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=4]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 1, 180, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 30, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 10.0
+scale_random = 0.0
+color_ramp = SubResource( 3 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Scale" ]
+
+[node name="Blackhole" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, 32.5 )
+scale = Vector2( 1, 1.34615 )
+shape = SubResource( 1 )
+
+[node name="back" type="Sprite" parent="." index="1"]
+
+modulate = Color( 1, 1, 1, 0.252549 )
+position = Vector2( 0, 15.735 )
+scale = Vector2( 1, 1.38751 )
+z_index = 101
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="umbra" type="Sprite" parent="." index="2"]
+
+position = Vector2( 0, 17 )
+z_index = -2
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Visibility", "Z Index" ]
+
+[node name="blackhole" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, 18 )
+z_index = -1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="Particles2D" type="Particles2D" parent="." index="4"]
+
+position = Vector2( 8.74228e-08, -2 )
+rotation = 1.5708
+emitting = true
+amount = 32
+lifetime = 1.5
+one_shot = false
+preprocess = 0.0
+speed_scale = 2.0
+explosiveness = 0.25
+randomness = 1.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -32, -32, 64, 64 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 4 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Z Index" ]
+
+[node name="blackhole_pass" type="Sprite" parent="." index="5"]
+
+position = Vector2( 0, 22 )
+z_index = 150
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 4 )
+volume_db = -25.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="area_entered" from="." to="." method="_on_Blackhole_area_entered"]
+
+
